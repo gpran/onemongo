@@ -1,5 +1,6 @@
 /**
- * Rest Controller for /students rest endpoint
+ * Rest Controller for /students/admin rest endpoint
+ * To be used by "admin-role" user only
  * All CRUD operations are in this class
  * */
 
@@ -24,7 +25,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/admin")
 public class StudentRestController {
 
     @Autowired
