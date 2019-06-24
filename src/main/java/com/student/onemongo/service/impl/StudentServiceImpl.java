@@ -39,6 +39,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void createStudent(Student students) {
+        students.setUName(students.getName().substring(0,4).concat(students.getId().substring(0,4)));
         studentRepository.insert(students);
     }
 

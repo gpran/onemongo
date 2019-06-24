@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/login")
-    public String login(@RequestBody StudentCred) {
-
+    public String login(@RequestBody StudentCred studentsession) {
+        String id = studentsession.get_id();
         logger.debug("User logged in with student-id= {}.", id);
         return "Logged In";
     }
@@ -55,14 +55,16 @@ public class UserController {
         return studentService.findStudentBy_id(id);
     }
     /**
-     * Method to update employee by id.
+     * Method to update student self data by id.
      * @param id
      * @param student
      * @return
      */
-    @PutMapping(value= "/updateself/{student-id}")
-    public Student update(@PathVariable(value= "student-id") ObjectId id, @RequestBody Student student) {
-        logger.debug("Updating student with student-id= {}.", id);
+    /*
+    //Further R&D needed
+    @PutMapping(value= "/updateself/{student-uname}")
+    public Student update(@PathVariable(value= "student-uname") String uname, @RequestBody Student student) {
+        logger.debug("Updating student with student-uname= {}.", id);
         student.setId(id);
         Student studentTemp = studentService.findStudentBy_id(id);
         //student.setDate((studentTemp).get().getDate());
@@ -71,7 +73,7 @@ public class UserController {
         return student;
         //return "Student record for student-id= " + id + " updated.";
     }
-
+    */
 
 
     @GetMapping(value = "checkController")

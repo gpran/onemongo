@@ -27,6 +27,7 @@ public class Student {
     //private int db_id;
     private ObjectId _id;
 
+    private String name;
     private String username;
     private int age;
     private int standard;
@@ -36,19 +37,20 @@ public class Student {
     @JsonIgnore
     private String password;
     @JsonIgnore
-    private String[] roles;
+    private String role;
 
     // Constructors
     public Student() {}
-/*
-    public Student(ObjectId db_id, String name, int age, int standard, String section ) {
-        this.db_id = db_id;
+
+    public Student(ObjectId _id, String name, String password, int age, int standard, String section ) {
+        this._id = _id;
         this.name = name;
+        this.password = password;
         this.age = age;
         this.standard = standard;
         this.section = section;
     }
-*/
+
 
     // Setter
     public void setId(ObjectId id) {
@@ -64,12 +66,12 @@ public class Student {
 
     // Setter
     public void setName(String newName) {
-        this.username = newName;
+        this.name = newName;
     }
 
     //Getter
     public String getName() {
-        return username;
+        return name;
     }
 
     // Setter
@@ -123,11 +125,21 @@ public class Student {
     }
 
     // Setter
-    public void setRoles(String[] roles) {  this.roles = roles; }
+    public void setRoles(String role) {  this.role = role; }
 
     //Getter
-    public String[] getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
+    }
+
+    // Setter
+    public void setUName(String newName) {
+        this.username = newName;
+    }
+
+    //Getter
+    public String getUName() {
+        return username;
     }
 
 }
