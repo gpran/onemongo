@@ -32,16 +32,19 @@ public class UserController {
         logger.debug("Registering new student.");
         studentreg.setId(ObjectId.get());
         studentreg.setDate(new Date());
+        studentreg.setUName(studentreg.getId().substring(4,7).concat(studentreg.getName().substring(0,5)).concat(studentreg.getId().substring(21,24)));
         studentService.createStudent(studentreg);
         return studentreg;
     }
 
+   /*
     @GetMapping(value = "/login")
     public String login(@RequestBody StudentCred studentsession) {
         String id = studentsession.get_id();
         logger.debug("User logged in with student-id= {}.", id);
         return "Logged In";
     }
+    */
 
     /**
      * Method to fetch student by id.

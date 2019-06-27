@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.student.onemongo.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 //import javax.validation.Valid;
@@ -43,6 +44,9 @@ public class StudentRestController {
         logger.debug("Saving student.");
         students.setId(ObjectId.get());
         students.setDate(new Date());
+        //Following Code makes custom UName
+        // using Object ID mid 3 letters + start 4 letters of name + Object ID end 3 letters
+        students.setUName(students.getId().substring(4,7).concat(students.getName().substring(0,5)).concat(students.getId().substring(21,24)));
         //long time = new Date().getTime();
         //students.setDate(new Timestamp(time));
         studentService.createStudent(students);
@@ -60,7 +64,7 @@ public class StudentRestController {
     }
 
     /**
-     * Method to fetch employee by id.
+     * Method to fetch student by id.
      * @param id
      * @return
      */
@@ -76,7 +80,7 @@ public class StudentRestController {
         return studentService.findStudentBy_id(id);
     }
     /**
-     * Method to update employee by id.
+     * Method to update delete by id.
      * @param id
      * @param student
      * @return
@@ -94,7 +98,7 @@ public class StudentRestController {
     }
 
     /**
-     * Method to delete employee by id.
+     * Method to delete student by id.
      * @param id
      * @return
      */

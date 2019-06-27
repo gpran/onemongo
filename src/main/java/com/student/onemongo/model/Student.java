@@ -24,6 +24,7 @@ import java.util.Date;
 public class Student {
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
     @Id
+
     //private int db_id;
     private ObjectId _id;
 
@@ -34,21 +35,24 @@ public class Student {
     private String section;
     //@CreatedDate
     private Date date;
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
-    @JsonIgnore
+    //@JsonIgnore
     private String role;
 
     // Constructors
     public Student() {}
 
-    public Student(ObjectId _id, String name, String password, int age, int standard, String section ) {
+    public Student(ObjectId _id, String name, String password, int age, int standard, String section, String role, String username, Date date) {
         this._id = _id;
         this.name = name;
-        this.password = password;
+        setPassword(password);
         this.age = age;
         this.standard = standard;
         this.section = section;
+        this.role = role;
+        this.username = username;
+        this.date = date;
     }
 
 
@@ -125,7 +129,7 @@ public class Student {
     }
 
     // Setter
-    public void setRoles(String role) {  this.role = role; }
+    public void setRole(String role) {  this.role = role; }
 
     //Getter
     public String getRole() {
