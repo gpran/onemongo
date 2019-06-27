@@ -55,7 +55,7 @@ public class Student {
         this.username = username;
         this.date = date;
     }
-    
+
 
     // Setter
     public void setId(ObjectId id) {

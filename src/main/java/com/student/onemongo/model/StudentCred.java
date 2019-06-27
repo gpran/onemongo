@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
-@Document(collection= "student_list")
+//@Document(collection= "student_list")
 public class StudentCred {
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();

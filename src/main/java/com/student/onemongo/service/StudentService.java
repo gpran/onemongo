@@ -26,7 +26,7 @@ public interface StudentService {
      * @param id
      * @return
      */
-    public Optional<Student> findStudentById(ObjectId id);
+    //public Optional<Student> findStudentById(ObjectId id);
 
     /**
      * Method to delete employee by id using mongo-db repository.
@@ -45,5 +45,5 @@ public interface StudentService {
      */
     public void deleteAllStudents();
 
-    Student findStudentBy_id(ObjectId db_id);
+    public Student findStudentBy_id(ObjectId db_id);
 }

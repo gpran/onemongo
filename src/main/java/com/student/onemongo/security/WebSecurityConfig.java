@@ -23,13 +23,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic()
                 .and().authorizeRequests()
-                .antMatchers("/","students","/students/portal/**")
-                .permitAll().anyRequest().authenticated()
-                .and().authorizeRequests().antMatchers("/students/admin/**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers("/students/portal/**").hasRole("USER")
+                .anyRequest().authenticated()
+                .and().authorizeRequests().antMatchers("/students/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
                 .and().formLogin()
                 .loginProcessingUrl("/students/portal/login").permitAll()
                 .loginProcessingUrl("/students/admin/login").permitAll()
                 .and().logout().permitAll();
+
+        http.csrf().disable();
     }
 
     @Bean

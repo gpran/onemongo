@@ -39,7 +39,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void createStudent(Student students) {
-        students.setUName(students.getName().substring(0,4).concat(students.getId().substring(0,4)));
         studentRepository.insert(students);
     }
 
@@ -48,12 +47,15 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
+    /*
     @Override
     public Optional<Student> findStudentById(ObjectId id) {
         logger.debug("Service Context :: Getting student with student-id= {}.", id);
         return studentRepository.findById(id);
     }
+    */
 
+    @Override
     public Student findStudentBy_id(ObjectId id) {
         logger.debug("Service Context :: Getting student with student-id= {}.", id);
         return studentRepository.findBy_id(id);

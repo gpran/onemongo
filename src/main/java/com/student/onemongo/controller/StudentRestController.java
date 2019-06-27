@@ -8,6 +8,7 @@ package com.student.onemongo.controller;
 
 import com.student.onemongo.model.Student;
 //import com.student.onemongo.repositories.StudentRepository;
+import com.student.onemongo.service.impl.Copier;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,9 +45,17 @@ public class StudentRestController {
         logger.debug("Saving student.");
         students.setId(ObjectId.get());
         students.setDate(new Date());
+        students.setRole("USER");
         //Following Code makes custom UName
         // using Object ID mid 3 letters + start 4 letters of name + Object ID end 3 letters
-        students.setUName(students.getId().substring(4,7).concat(students.getName().substring(0,5)).concat(students.getId().substring(21,24)));
+        String pre = students.getId().substring(4,7);
+        String post= students.getId().substring(21,24);
+        String subName=students.getName().substring(0,4);
+        //pre.concat(subName);
+        //pre.concat(post);
+        students.setUName(pre.concat(subName.concat(post)));
+        //students.setUName(students.getId().substring(4,7).concat(students.getName().substring(0,4)).concat(students.getId().substring(21,24)));
+        logger.debug("Creating student with username= {}.", students.getUName());
         //long time = new Date().getTime();
         //students.setDate(new Timestamp(time));
         studentService.createStudent(students);
@@ -90,10 +99,16 @@ public class StudentRestController {
         logger.debug("Updating student with student-id= {}.", id);
         student.setId(id);
         Student studentTemp = studentService.findStudentBy_id(id);
-        //student.setDate((studentTemp).get().getDate());
+        //Cuastom Bean property functionality to copy not null elements fro, Request Object to Database extracted Object
+        Copier copier = new Copier();
+        copier.myCopyProperties(student,studentTemp);
+        /*//student.setDate((studentTemp).get().getDate());
         student.setDate(studentTemp.getDate());
-        studentService.updateStudent(student);
-        return student;
+        //student.setDate(studentTemp.);
+        student.setRole("USER");
+        */
+        studentService.updateStudent(studentTemp);
+        return studentTemp;
         //return "Student record for student-id= " + id + " updated.";
     }
 
