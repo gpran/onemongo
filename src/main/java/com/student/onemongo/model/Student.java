@@ -43,6 +43,7 @@ public class Student {
     // Constructors
     public Student() {}
 
+
     public Student(ObjectId _id, String name, String password, int age, int standard, String section, String role, String username, Date date) {
         this._id = _id;
         this.name = name;
@@ -54,7 +55,7 @@ public class Student {
         this.username = username;
         this.date = date;
     }
-
+    
 
     // Setter
     public void setId(ObjectId id) {
