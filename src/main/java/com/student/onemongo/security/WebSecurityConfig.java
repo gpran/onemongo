@@ -1,6 +1,7 @@
 package com.student.onemongo.security;
 
 import com.student.onemongo.model.Student;
+import com.student.onemongo.service.StudentService;
 import com.student.onemongo.service.impl.StudentDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +16,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+
+import java.util.Date;
+import java.util.Objects;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    StudentDetailService studentDetailsService;
+    StudentDetailService studentDetailsService1;
+
+
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -42,24 +51,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 
+
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
+
         UserDetails user =
                 User.withDefaultPasswordEncoder()
                         .username("mis")
                         .password("adminmis")
                         .roles("ADMIN")
                         .build();
+
+
         logger.debug("Setting Admin User");
 
         return new InMemoryUserDetailsManager(user);
     }
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(studentDetailsService).passwordEncoder(Student.PASSWORD_ENCODER);
         logger.debug("Configuring User Auth Settings");
+        auth.userDetailsService(studentDetailsService1).passwordEncoder(Student.PASSWORD_ENCODER);
+        /*
+        String pwd = "adminmis";
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        auth.inMemoryAuthentication().withUser("mis").password(passwordEncoder.encode(pwd)).roles("ADMIN");
+        */
     }
 
    /* @Override

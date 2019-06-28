@@ -8,18 +8,13 @@ package com.student.onemongo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bson.types.ObjectId;
-//import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-
-//import java.sql.Timestamp;
-import java.sql.Timestamp;
 import java.util.Date;
 
-// Mongo database annotation.
+
 @Document(collection= "student_list")
 public class Student {
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
@@ -42,6 +37,7 @@ public class Student {
 
     // Constructors
     public Student() {}
+
 
 
     public Student(ObjectId _id, String name, String password, int age, int standard, String section, String role, String username, Date date) {

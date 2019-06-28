@@ -14,13 +14,13 @@ public interface StudentService {
      * Method to create new employees in the db using mongo-db repository.
      * @param students
      */
-    public void createStudent(Student students);
+     void createStudent(Student students);
 
     /**
      * Method to fetch all employees from the db using mongo-db repository.
      * @return
      */
-    public Collection<Student> getAllStudents();
+     Collection<Student> getAllStudents();
 
     /**
      * Method to fetch employee by id using mongo-db repository.
@@ -33,20 +33,20 @@ public interface StudentService {
      * Method to delete employee by id using mongo-db repository.
      * @param id
      */
-    public void deleteStudentById(ObjectId id);
+     void deleteStudentById(ObjectId id);
 
     /**
      * Method to update employee by id using mongo-db repository.
      * @param id
      */
-    public void updateStudent(Student student);
+     void updateStudent(Student student);
 
     /**
      * Method to delete all employees using mongo-db repository.
      */
-    public void deleteAllStudents();
+     void deleteAllStudents();
 
-    public Student findStudentBy_id(ObjectId db_id);
+     Student findStudentBy_id(ObjectId db_id);
 
-    public Student getSelf(String username);
+     Student getSelf(String username);
 }

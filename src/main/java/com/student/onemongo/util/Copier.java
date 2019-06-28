@@ -1,4 +1,4 @@
-package com.student.onemongo.service.impl;
+package com.student.onemongo.util;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
