@@ -2,6 +2,7 @@ package com.student.onemongo.service;
 
 import com.student.onemongo.model.Student;
 import org.bson.types.ObjectId;
+import org.springframework.security.core.Authentication;
 
 import java.util.Collection;
 import java.util.List;
@@ -46,4 +47,6 @@ public interface StudentService {
     public void deleteAllStudents();
 
     public Student findStudentBy_id(ObjectId db_id);
+
+    public Student getSelf(String username);
 }

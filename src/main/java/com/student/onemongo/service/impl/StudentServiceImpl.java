@@ -6,11 +6,13 @@ import com.student.onemongo.service.StudentService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -75,6 +77,15 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteAllStudents() {
         studentRepository.deleteAll();
+    }
+
+    @Override
+    public Student getSelf(String username) {
+        Student student = studentRepository.findByUsername(username);
+        logger.debug("Username Found:: "+username);
+        //System.out.println(principal.getName());
+        return student;
+
     }
 
 }

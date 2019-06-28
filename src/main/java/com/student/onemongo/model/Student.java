@@ -35,7 +35,7 @@ public class Student {
     private String section;
     //@CreatedDate
     private Date date;
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
     @JsonIgnore
     private String role;
