@@ -47,7 +47,7 @@ public class Student {
     public Student(ObjectId _id, String name, String password, int age, int standard, String section, String role, String username, Date date) {
         this._id = _id;
         this.name = name;
-        setPassword(password);
+        this.password = PASSWORD_ENCODER.encode(password);
         this.age = age;
         this.standard = standard;
         this.section = section;
