@@ -1,10 +1,14 @@
 package com.student.onemongo.security;
 
+import com.student.onemongo.model.Student;
+import com.student.onemongo.service.impl.StudentDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,8 +20,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    StudentDetailService studentDetailsService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,6 +54,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         logger.debug("Setting Admin User");
 
         return new InMemoryUserDetailsManager(user);
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(studentDetailsService).passwordEncoder(Student.PASSWORD_ENCODER);
+        logger.debug("Configuring User Auth Settings");
     }
 
    /* @Override

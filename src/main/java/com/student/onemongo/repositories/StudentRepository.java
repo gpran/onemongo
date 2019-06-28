@@ -18,6 +18,8 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends MongoRepository <Student, ObjectId>/*, QuerydslPredicateExecutor<Student>*/ {
     Student findBy_id(ObjectId db_id);
+
+    Student findByUsername(String username);
     //@Query("{ 'name' : ?0 }")
     //List<Student> findUsersByName(String name);
     //Student findByNameAndPassword(String uname, String password);
