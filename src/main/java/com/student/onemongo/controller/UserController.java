@@ -38,18 +38,11 @@ public class UserController {
     }
     */
 
-    /*
-    @GetMapping(value = "/login")
-    public String login(@RequestBody StudentCred studentsession) {
-        String id = studentsession.get_id();
-        logger.debug("User logged in with student-id= {}.", id);
-        return "Logged In";
-    }
-    */
+
 
     /**
      * Method to fetch student by id.
-     * @param id
+     * @param
      * @return
      */
 
@@ -63,7 +56,7 @@ public class UserController {
      * Method to update student self data by id.
      * @param authentication
      * @param student
-     * @return
+     * @return student
      */
 
     //Further R&D needed

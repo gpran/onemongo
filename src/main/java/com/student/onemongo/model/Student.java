@@ -8,6 +8,7 @@ package com.student.onemongo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bson.types.ObjectId;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,23 +18,23 @@ import java.util.Date;
 
 @Document(collection= "student_list")
 public class Student {
-    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
     @Id
-
-    //private int db_id;
     private ObjectId _id;
-
     private String name;
     private String username;
     private int age;
     private int standard;
     private String section;
-    //@CreatedDate
     private Date date;
-    //@JsonIgnore
     private String password;
+
     @JsonIgnore
     private String role;
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     // Constructors
     public Student() {}
@@ -43,7 +44,7 @@ public class Student {
     public Student(ObjectId _id, String name, String password, int age, int standard, String section, String role, String username, Date date) {
         this._id = _id;
         this.name = name;
-        this.password = PASSWORD_ENCODER.encode(password);
+        this.password = passwordEncoder().encode(password);
         this.age = age;
         this.standard = standard;
         this.section = section;
@@ -62,7 +63,6 @@ public class Student {
 
     public String getId() {
         return _id.toHexString();
-        //return db_id;
     }
 
     // Setter
@@ -117,7 +117,7 @@ public class Student {
 
     // Setter
     public void setPassword(String password) {
-        this.password = PASSWORD_ENCODER.encode(password);
+        this.password = passwordEncoder().encode(password);
     }
 
     //Getter

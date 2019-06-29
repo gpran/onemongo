@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 
 @Service
@@ -23,16 +22,6 @@ public class StudentServiceImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
-    //@Autowired
-    //MongoOperations mongoOperations;
-
-    /*
-    @Override
-    public void saveStudent(Student student) {
-        mongoOperations.save(student);
-    }
-    */
-
     @Override
     public void createStudent(Student students) {
         studentRepository.insert(students);
@@ -42,14 +31,6 @@ public class StudentServiceImpl implements StudentService {
     public Collection<Student> getAllStudents() {
         return studentRepository.findAll();
     }
-
-    /*
-    @Override
-    public Optional<Student> findStudentById(ObjectId id) {
-        logger.debug("Service Context :: Getting student with student-id= {}.", id);
-        return studentRepository.findById(id);
-    }
-    */
 
     @Override
     public Student findStudentBy_id(ObjectId id) {
@@ -81,5 +62,4 @@ public class StudentServiceImpl implements StudentService {
         return student;
 
     }
-
 }
